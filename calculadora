@@ -1,0 +1,104 @@
+#importando biblioteca
+from tkinter import *
+from tkinter import ttk
+
+            
+
+#definindo as cores a serem usadas
+cor1 = "#1a5c21"
+cor2 = "#8cbf92"
+cor3 = "#c5fccb"
+cor4 = "#d8f0db"
+
+#configurando o tamanho da calculadora
+janela =Tk()
+janela.title("Calculadora do Lucao")
+janela.geometry("235x318")
+janela.config(bg=cor1)
+
+
+
+#definindo as repartiçao da janela da calculadora
+Frame_tela = Frame(janela, width=235, height=114, bg=cor2)
+Frame_tela.grid(row=0)
+
+Frame_corpo = Frame(janela, width=235, height=288, bg=cor1)
+Frame_corpo.grid(row=1)
+
+#configurando para fazer calculos
+todos_valores = ''
+
+def entrar_valores(event):
+
+   global todos_valores
+   todos_valores = todos_valores + str(event)
+   
+    
+   valor_texto.set(todos_valores)
+
+def calcular():
+    global todos_valores
+    resultado = eval(todos_valores)
+    
+    valor_texto.set(str(resultado))
+
+def limpar_tela():
+    global todos_valores
+    todos_valores = ""
+    valor_texto.set("")    
+
+
+
+  
+
+valor_texto = StringVar()
+
+app_label = Label(Frame_tela, textvariable=valor_texto, width=16, height=2, padx=7, relief=FLAT, anchor="e", justify=RIGHT, font=('Ivi 18 '),bg=cor3)
+app_label.place(x=0,y=0)
+
+
+#criando os botoes
+b_1 = Button(Frame_corpo, command=limpar_tela, text = "c", width=14, height=2 ,bg=cor3)
+b_1.place(x=0, y=0)
+b_2 = Button(Frame_corpo, command = lambda: entrar_valores('%'), text="%", width=6, height=2 ,bg=cor3)
+b_2.place(x=104, y=0)
+b_1 = Button(Frame_corpo, command = lambda: entrar_valores('/'), text="/", width=11, height=2, bg=cor2)
+b_1.place(x=155, y=0)
+
+b_3 = Button(Frame_corpo,command = lambda: entrar_valores('7'), text="7", width=6, height=2,bg=cor3)
+b_3.place(x=0, y=40)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('8'), text="8", width=6, height=2,bg=cor3)
+b_2.place(x=52, y=40)
+b_1 = Button(Frame_corpo,command = lambda: entrar_valores('9'), text="9", width=6, height=2,bg=cor3)
+b_1.place(x=104, y=40)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('*'), text="*", width=11, height=2,bg=cor2)
+b_2.place(x=155, y=40)
+
+b_1 = Button(Frame_corpo,command = lambda: entrar_valores('4'), text="4", width=6, height=2, bg=cor3)
+b_1.place(x=0, y=81)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('5'), text="5", width=6, height=2,bg=cor3)
+b_2.place(x=52, y=81)
+b_1 = Button(Frame_corpo,command = lambda: entrar_valores('6'), text="6", width=6, height=2,bg=cor3)
+b_1.place(x=104, y=81)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('-'), text="-", width=11, height=2,bg=cor2)
+b_2.place(x=155, y=81)
+
+b_1 = Button(Frame_corpo,command = lambda: entrar_valores('1'), text="1", width=6, height=2,bg=cor3)
+b_1.place(x=0, y=122)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('2'), text="2", width=6, height=2,bg=cor3)
+b_2.place(x=52, y=122)
+b_1 = Button(Frame_corpo,command = lambda: entrar_valores('3'), text="3", width=6, height=2,bg=cor3)
+b_1.place(x=104, y=122)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('+'), text="+", width=11, height=2,bg=cor2)
+b_2.place(x=155, y=122)
+
+b_1 = Button(Frame_corpo,command = lambda: entrar_valores('0'), text="0", width=14, height=2)
+b_1.place(x=0, y=162)
+b_2 = Button(Frame_corpo,command = lambda: entrar_valores('.'), text=".", width=6, height=2)
+b_2.place(x=104, y=162)
+b_1 = Button(Frame_corpo,command = calcular, text="=", width=10, height=2)
+b_1.place(x=155, y=162)
+
+
+
+janela.mainloop()
